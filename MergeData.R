@@ -60,10 +60,10 @@ managers <- data.frame(managers, mean_value)
 managers
 
 # Change the name of this column to "mean value"
-names(managers)[12] <- "mean value"
+names(managers)[12] <- "Mean Value"
 
 # Change name of summary_col to "Answer total"
-names(managers)[11] <- "Answer total"
+names(managers)[11] <- "Answer Total"
 
 
 # Loading data into dataframe
@@ -80,13 +80,13 @@ str(managers)
 
 #library(dplyr)
 #new_managers_data <- select(new_managers_data, Country, Age, Date, Gender, Q1, Q2, 
-                            Q3, Q4, Q5  )
+#                            Q3, Q4, Q5  )
 #include_list <- new_managers_data[c("Date", "Country"....)]
 #include_list <- new_managers_data(c(6,3,7,4,8:12))
 #include_list <- subset(new_managers_data, select = c(6,3,7,4,8:12))
 
 #str(new_managers_data)  
-str(managers)  
+ 
 # Recode the incorrect 'age' data to NA
 #new_managers_data$Age[new_managers_data$Age == 99] <- NA
 
@@ -182,10 +182,13 @@ include_list$`Mean Value` <- rowMeans(include_list[5:9])
 # Format when using Date datatype
 
 # Convert date structure for include list data frame
-restructured_date <- as.Date(include_list$Date, "%m/%d/%Y")
-restructured_date
+include_list$Date <- as.Date(include_list$Date, "%m/%d/%Y")
+include_list$Date
 
 # Convert date_structure for managers dataframe
-restructured_date1 <- as.Date(managers$Date, "%Y-%d-%m")
-restructured_date1
+managers$Date <- as.Date(managers$Date, "%Y-%d-%m")
+managers$Date
 
+str(managers)
+# Merging of two dataframes
+new_merge <- rbind(managers, include_list)
